@@ -15,7 +15,7 @@ app.use(express.json());
 // Routes
 // app.use("/auth", authRoutes);
 
-app.use("/me", (req, res) => {
+app.get("/me", (req, res) => {
   res.json({ user: "Its running" });
 });
 
