@@ -1,7 +1,7 @@
 // File: routes/authRoutes.js
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const UserModel = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const router = express.Router();
@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user with hashed password
-    const user = new User({ ...rest, password: hashedPassword });
+    const user = new UserModel({ ...rest, password: hashedPassword });
     await user.save();
 
     // Generate token
@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
   }
 
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await UserModel.findOne({ email });
   if (!user || !(await user.comparePassword(password))) {
     return res.status(401).send({ error: "Invalid credentials" });
   }
