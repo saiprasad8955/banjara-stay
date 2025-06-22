@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { verifyToken } = require("./src/middleware/auth");
-const User = require("./src/models/User");
 
 const authRoutes = require("./src/routes/authRoutes");
 const roomRoutes = require("./src/routes/roomRoutes");
@@ -18,14 +17,7 @@ app.use(express.json());
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB connected");
-
-    // ✅ Once connected, you can safely query:
-    User.findOne({ email: "banjara-stay@banjara.com" })
-      .then((user) => console.log("Fetched user:", user))
-      .catch((err) => console.error("Error fetching user:", err));
-  })
+  .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.use(
