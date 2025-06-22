@@ -3,7 +3,7 @@ import OneView from 'src/sections/one/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: One',
+  title: 'Banjara Stay : Payments',
 };
 
 export default function Page() {

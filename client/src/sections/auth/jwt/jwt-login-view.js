@@ -46,8 +46,8 @@ export default function JwtLoginView() {
   });
 
   const defaultValues = {
-    email: 'sai@banjara.com',
-    password: 'Sai@123',
+    email: 'banjara-stay@banjara.com',
+    password: 'Banjara@123',
   };
 
   const methods = useForm({
@@ -63,10 +63,12 @@ export default function JwtLoginView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      console.log("🚀 ~ onSubmit ~ data:", data)
       await login?.(data.email, data.password);
 
       router.push(returnTo || PATH_AFTER_LOGIN);
     } catch (error) {
+      console.log("🚀 ~ onSubmit ~ error:", error)
       console.error(error);
       reset();
       setErrorMsg(typeof error === 'string' ? error : error.message);

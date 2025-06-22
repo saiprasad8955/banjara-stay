@@ -1,24 +1,13 @@
-import { _mock } from 'src/_mock';
-
-// TO GET THE USER FROM THE AUTHCONTEXT, YOU CAN USE
-
-// CHANGE:
-// import { useMockedUser } from 'src/hooks/use-mocked-user';
-// const { user } = useMockedUser();
-
-// TO:
-// import { useAuthContext } from 'src/auth/hooks';
-// const { user } = useAuthContext();
-
-// ----------------------------------------------------------------------
+// import { _mock } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
 
 export function useMockedUser() {
+  const { user: authUser } = useAuthContext();
+
   const user = {
-    id: '8864c717-587d-472a-929a-8e5f298024da-0',
-    displayName: 'Jaydon Frankie',
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
-    photoURL: _mock.image.avatar(24),
+    id: authUser?._id ?? '8864c717-587d-472a-929a-8e5f298024da-0',
+    displayName: authUser?.firstName ? `${authUser.firstName} ${authUser.lastName}` : 'Demo User',
+    email: authUser?.email ?? 'demo@cc.com',
     phoneNumber: '+40 777666555',
     country: 'United States',
     address: '90210 Broadway Blvd',

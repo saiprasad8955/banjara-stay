@@ -1,11 +1,11 @@
-import SixView from 'src/sections/six/view';
+import OneView from 'src/sections/one/view';
 
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Six',
+  title: 'Banjara Stay : Rooms',
 };
 
 export default function Page() {
-  return <SixView />;
+  return <OneView />;
 }

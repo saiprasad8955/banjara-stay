@@ -1,11 +1,11 @@
-import ThreeView from 'src/sections/three/view';
+import OneView from 'src/sections/one/view';
 
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Three',
+  title: 'Banjara Stay : Families',
 };
 
 export default function Page() {
-  return <ThreeView />;
+  return <OneView />;
 }

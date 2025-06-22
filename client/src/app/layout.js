@@ -24,7 +24,7 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'BanjaraStay',
+  title: 'Banjara - Stay',
   description:
     'Easily manage rental details and electricity bills with BanjaraStay. A smart, hassle-free solution for tenants and homeowners.',
   keywords: 'react,material,kit,application,dashboard,admin,template',
