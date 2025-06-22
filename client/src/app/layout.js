@@ -43,7 +43,7 @@ export const metadata = {
     siteName: 'BanjaraStay',
     images: [
       {
-        url: '/logo/logo_single.png',
+        url: 'https://banjara-stay-w88q.vercel.app/logo/logo_single.png',
         width: 1200,
         height: 630,
         alt: 'BanjaraStay preview image',
