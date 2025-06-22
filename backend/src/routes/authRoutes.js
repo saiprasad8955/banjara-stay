@@ -14,8 +14,11 @@ router.post("/register", async (req, res) => {
       !req.body.lastName ||
       !req.body.email ||
       !req.body.password
-    )
-      throw new Error("firstName,lastName,email,password are required fields");
+    ) {
+      res.status(400).send({
+        error: "firstName,lastName,email,password are required fields",
+      });
+    }
 
     // Destructure password
     const { password, ...rest } = req.body;
@@ -44,8 +47,11 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   // check all fields avaialble or not
-  if (!req.body.email || !req.body.password)
-    throw new Error("email,password are required fields");
+  if (!req.body.email || !req.body.password) {
+    res.status(400).send({
+      error: "email,password are required fields",
+    });
+  }
 
   const { email, password } = req.body;
   const user = await User.findOne({ email });
