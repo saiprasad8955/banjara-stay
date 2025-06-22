@@ -35,6 +35,29 @@ export const metadata = {
     { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon/favicon-32x32.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', url: '/favicon/apple-touch-icon.png' },
   ],
+  // ✅ Add these for social sharing
+  openGraph: {
+    title: 'Banjara - Stay',
+    description: 'Easily manage rental details and electricity bills with BanjaraStay.',
+    url: 'https://banjara-stay-w88q.vercel.app/auth/login',
+    siteName: 'BanjaraStay',
+    images: [
+      {
+        url: '/logo/logo_single.png',
+        width: 1200,
+        height: 630,
+        alt: 'BanjaraStay preview image',
+      },
+    ],
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Banjara - Stay',
+    description: 'Easily manage rental details and electricity bills with BanjaraStay.',
+    images: ['/logo/logo_single.png'],
+  },
 };
 
 export default function RootLayout({ children }) {
