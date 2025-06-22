@@ -28,7 +28,7 @@ app.use(
 );
 
 // Routes
-app.use("/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.use("/user/me", verifyToken, (req, res) => {
   res.json({ user: req.user });
@@ -39,4 +39,6 @@ app.use("/api/v1/resident", verifyToken, residentFamilyRoutes);
 app.use("/api/v1/payment", verifyToken, rentPaymentRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Banjara Stays API'S running on port ${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Banjara Stays API'S running on port ${PORT}`)
+);
