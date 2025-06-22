@@ -58,8 +58,9 @@ router.post("/login", async (req, res) => {
 
     // Find user
     const user = await UserModel.findOne({ email });
+    console.log("🚀 ~ router.post ~ user:", user);
     if (!user) {
-      return res.status(401).send({ error: "Invalid email or password." });
+      return res.status(400).send({ error: "Invalid email or password." });
     }
 
     // Compare passwords
