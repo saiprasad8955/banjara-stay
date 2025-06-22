@@ -29,11 +29,6 @@ app.use(
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
-
-app.use("/user/me", verifyToken, (req, res) => {
-  res.json({ user: req.user });
-});
-
 app.use("/api/v1/room", verifyToken, roomRoutes);
 app.use("/api/v1/resident", verifyToken, residentFamilyRoutes);
 app.use("/api/v1/payment", verifyToken, rentPaymentRoutes);

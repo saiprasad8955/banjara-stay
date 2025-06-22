@@ -2,6 +2,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/User");
+const { verifyToken } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -81,6 +82,10 @@ router.post("/login", async (req, res) => {
     console.error("Login error:", err);
     res.status(500).send({ error: "Server error during login" });
   }
+});
+
+router.get("/me", verifyToken, (req, res) => {
+  res.json({ user: req.user });
 });
 
 module.exports = router;
