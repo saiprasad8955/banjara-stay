@@ -56,7 +56,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Banjara - Stay',
     description: 'Easily manage rental details and electricity bills with BanjaraStay.',
-    images: ['/logo/logo_single.png'],
+    images: ['https://banjara-stay-w88q.vercel.app/logo/logo_single.png'],
   },
 };
 
