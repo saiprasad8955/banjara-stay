@@ -29,11 +29,9 @@ router.post("/register", async (req, res) => {
     await user.save();
 
     // Generate JWT token
-    const token = jwt.sign(
-      { id: user._id, role: user.role, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
+    const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
     res.status(201).send({
       message: "User registered successfully",
@@ -71,11 +69,9 @@ router.post("/login", async (req, res) => {
     }
 
     // Generate token
-    const token = jwt.sign(
-      { _id: user._id, role: user.role, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
+    const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
     res.send({ accessToken: token, user });
   } catch (err) {
