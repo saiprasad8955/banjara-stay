@@ -4,13 +4,13 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const rTracer = require("cls-rtracer");
-const { verifyToken } = require("../src/middleware/auth");
+const { verifyToken } = require("./src/middleware/auth");
 
-const authRoutes = require("../src/routes/authRoutes");
-const roomRoutes = require("../src/routes/roomRoutes");
-const residentFamilyRoutes = require("../src/routes/residentFamilyRoutes");
-const rentPaymentRoutes = require("../src/routes/paymentRoutes");
-const dashboardRoutes = require("../src/routes/dashboardRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const roomRoutes = require("./src/routes/roomRoutes");
+const residentFamilyRoutes = require("./src/routes/residentFamilyRoutes");
+const rentPaymentRoutes = require("./src/routes/paymentRoutes");
+const dashboardRoutes = require("./src/routes/dashboardRoutes");
 
 dotenv.config();
 const app = express();
