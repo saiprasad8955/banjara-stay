@@ -15,13 +15,15 @@ const dashboardRoutes = require("./src/routes/dashboardRoutes");
 dotenv.config();
 const app = express();
 
-// CORS
-app.use(
-  cors({
-    origin: "*",
-    credentials: false,
-  })
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
+});
 
 // Request tracing
 app.use(rTracer.expressMiddleware());
@@ -60,14 +62,7 @@ app.use("/api/v1/dashboard", verifyToken, dashboardRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-// If app is a serverless export, unwrap it
-if (typeof app === "function") {
-  const normalApp = express();
-  normalApp.use(app);
-  normalApp.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-} else {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // Export handler for Vercel
 module.exports = serverless(app);
