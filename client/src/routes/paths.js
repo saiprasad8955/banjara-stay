@@ -15,7 +15,7 @@ export const paths = {
     register: `${ROOTS.AUTH}/register`,
   },
   room: '/room',
-  resident: '/resident',
+  resident: '/residents',
   payment: '/payment',
   dashboard: ROOTS.DASHBOARD,
 };

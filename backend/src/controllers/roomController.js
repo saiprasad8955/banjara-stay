@@ -1,12 +1,14 @@
 const Room = require("../models/Room");
+const ResidentFamily = require("../models/ResidentFamily");
 
 // CREATE Room
 exports.createRoom = async (req, res) => {
   try {
-    const { userId, number, floor, type, rent, status, notes } = req.body;
+    const { number, floor, type, rent, status, notes } = req.body;
+    console.log("🚀 ~ req.body:", req.body);
 
     // Basic validation
-    if (!userId || !number || !floor || !type || !rent) {
+    if (!number || !floor || !type || !rent) {
       return res
         .status(400)
         .json({ error: "All required fields must be provided." });
@@ -14,7 +16,7 @@ exports.createRoom = async (req, res) => {
 
     // Create and save room
     const newRoom = new Room({
-      userId,
+      userId: req.user._id,
       number,
       floor,
       type,
@@ -48,23 +50,21 @@ exports.getAllRooms = async (req, res) => {
 // READ single room by ID
 exports.getRoomById = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    // Check if valid MongoDB ObjectId
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-      return res.status(400).json({ error: "Invalid room ID format." });
+    const room = await Room.findById(req.params.id);
+    if (!room || room.isDeleted) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Room not found" });
     }
 
-    const room = await Room.findOne({ _id: id, isDeleted: false });
-
-    if (!room) {
-      return res.status(404).json({ error: "Room not found." });
-    }
-
-    return res.status(200).json(room);
-  } catch (error) {
-    console.error("Error fetching room:", error);
-    return res.status(500).json({ error: "Server error while fetching room." });
+    const families = await ResidentFamily.find({
+      roomId: req.params.id,
+      isDeleted: false,
+    }).sort({ createdAt: -1 });
+    res.json({ success: true, data: { room, families } });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const ResidentPaymentSchema = new mongoose.Schema({
   familyId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Family",
+    ref: "ResidentFamily",
     required: true,
   },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
