@@ -18,8 +18,8 @@ const app = express();
 // CORS
 app.use(
   cors({
-    origin: ["http://localhost:3033", "https://banjara-stay-w88q.vercel.app"],
-    credentials: true,
+    origin: "*",
+    credentials: false,
   })
 );
 
