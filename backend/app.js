@@ -1,5 +1,4 @@
 const express = require("express");
-const serverless = require("serverless-http");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -25,8 +24,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Handle preflight requests for all routes
-app.options("*", cors(corsOptions));
 // Request tracing
 app.use(rTracer.expressMiddleware());
 
@@ -41,7 +38,7 @@ app.use(express.json());
 // Connect to MongoDB (only once per instance)
 let isConnected;
 async function connectDB() {
-  if (isConnected) return;
+  if (isConnected) return `Already connected to MongoDB`;
   try {
     const db = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
@@ -53,6 +50,7 @@ async function connectDB() {
     console.error("MongoDB connection error:", err);
   }
 }
+
 connectDB();
 
 // Routes
@@ -65,6 +63,3 @@ app.use("/api/v1/dashboard", verifyToken, dashboardRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// Export handler for Vercel
-module.exports = serverless(app);
