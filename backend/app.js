@@ -15,14 +15,7 @@ dotenv.config();
 const app = express();
 
 // CORS config
-const corsOptions = {
-  origin: "*", // or '*' if you don't need credentials
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: false,
-};
-
-app.use(cors(corsOptions));
+app.use(cors({ origin: "*" }));
 
 // Request tracing
 app.use(rTracer.expressMiddleware());
