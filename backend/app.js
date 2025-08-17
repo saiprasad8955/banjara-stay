@@ -47,6 +47,12 @@ async function connectDB() {
 connectDB();
 
 // Routes
+app.use("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome to BanjaraStay API",
+  });
+});
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/room", verifyToken, roomRoutes);
 app.use("/api/v1/family", verifyToken, residentFamilyRoutes);
