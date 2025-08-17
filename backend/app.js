@@ -46,6 +46,11 @@ async function connectDB() {
 
 connectDB();
 
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/room", verifyToken, roomRoutes);
+app.use("/api/v1/family", verifyToken, residentFamilyRoutes);
+app.use("/api/v1/payment", verifyToken, rentPaymentRoutes);
+app.use("/api/v1/dashboard", verifyToken, dashboardRoutes);
 // Routes
 app.use("/", (req, res) => {
   res.status(200).json({
@@ -53,12 +58,6 @@ app.use("/", (req, res) => {
     message: "Welcome to BanjaraStay API",
   });
 });
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/room", verifyToken, roomRoutes);
-app.use("/api/v1/family", verifyToken, residentFamilyRoutes);
-app.use("/api/v1/payment", verifyToken, rentPaymentRoutes);
-app.use("/api/v1/dashboard", verifyToken, dashboardRoutes);
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

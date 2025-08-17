@@ -24,6 +24,7 @@ export const viewport = {
 };
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3033'),
   title: 'Banjara - Stay',
   description:
     'Easily manage rental details and electricity bills with BanjaraStay. A smart, hassle-free solution for tenants and homeowners.',
